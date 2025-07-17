@@ -4,7 +4,8 @@ import dotenv from 'dotenv'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 // for proper markdown rendering and syntax highlighting
 import  { marked } from 'marked'
-import hljs from 'highlight.js'
+import { markedHighlight } from 'marked-highlight'
+import hljs from 'highlight.js';
 
 
 // loads environment variable from dotenv
@@ -32,49 +33,23 @@ const PORT = process.env.PORT || 3000
 const genAI = new GoogleGenerativeAI(API_KEY)
 const model = genAI.getGenerativeModel({ model: MODEL_NAME })
 
-// Configure marked to use highlight.js
-marked.setOptions({
-    highlight: (code, lang) => {
-        const language = lang && hljs.getLanguage(lang) ? lang : 'plaintext'
-        return hljs.highlight(code, { language }).value
-    },
-    langPrefix: 'language-' // important to match css class prefix
-})
+// Setup marked to use hljs for syntax highlighting
+marked.use(markedHighlight({
+    langPrefix: 'hljs language-',
+    highlight(code, lang) {
+        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        return hljs.highlight(code, { language }).value;
+    }
+}));
 
 app.listen(PORT, () => {
     console.log(`Gemini Chatbot running on http://localhost:${PORT}`)
 })
 
-
-// Route chat
 /*
-app.post('/api/chat', async (req, res) => {
-    const userMessage = req.body.message
-
-    if (!userMessage) {
-        return res.status(400).json({ reply: "Message is required" })
-    }
-
-    try {
-        const result = await model.generateContent(userMessage)
-        const response = await result.response
-        const text = response.text()
-        console.log(text)
-
-        res.json({ reply: text })
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({ reply: "Something went wrong, please try again" })
-    }
-})
+The backend renders outputted text from Markdown to HTML with syntax highlighting, 
+before sending it to the frontend
 */
-
-/*
-The backend renders outputted text from Markdown to HTML with syntax highlighting, before
-sending it to the frontend
-*/
-
-
 app.post('/api/chat', async (req, res) => {
     const userMessage = req.body.message
 
@@ -85,16 +60,14 @@ app.post('/api/chat', async (req, res) => {
     try {
         const result = await model.generateContent(userMessage)
         const response = result.response
-        const text = response.text()
-
-        //check on console
-        console.log(text)
-
-        res.json({ reply: text })
+        const markdownText = response.text()
+        const htmlReply = marked.parse(markdownText)
+        
+        //Output to frontend
+        res.json({ reply: htmlReply })
 
     } catch (error) {
         console.error(error)
-        res.status(500).json({ error: error.message })
-
+        res.status(500).json({ reply: "Something went wrong, please try again later." })
     }
 })

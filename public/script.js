@@ -2,14 +2,6 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('user-input');
 const chatBox = document.getElementById('chat-box');
 
-// Configure marked to use highlight.js for syntax highlighting
-marked.setOptions({
-  highlight: (code, lang) => {
-    const language = lang && hljs.getLanguage(lang) ? lang : 'plaintext';
-    return hljs.highlight(code, { language }).value;
-  },
-  langPrefix: 'language-', // for CSS classes
-});
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -21,7 +13,7 @@ form.addEventListener('submit', function (e) {
   input.value = '';
 
   // Display "thinking..." message
-  const thinkingMessage = appendMessage('bot', 'Gemini is thinking...');
+  const thinkingMessage = appendMessage('bot', 'Thinking...');
 
   fetch('/api/chat', {
     method: 'POST',
@@ -35,7 +27,7 @@ form.addEventListener('submit', function (e) {
     // Remove "thinking..." message and display actual reply
     removeMessage(thinkingMessage);
     if (data.reply) {
-      // Render markdown to HTML and append it
+      // Get an already HTML formatted text from backend and append
       appendFormattedMessage('bot', data.reply);
     }
   })
@@ -60,12 +52,12 @@ function removeMessage(messageElement) {
         chatBox.removeChild(messageElement);
 }
 
-function appendFormattedMessage(sender, markdownText) {
+function appendFormattedMessage(sender, htmlText) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
 
-  // Convert markdown to HTML
-  msg.innerHTML = marked.parse(markdownText);
+  // append html from backend
+  msg.innerHTML = htmlText;
 
   // Append to DOM  first
   chatBox.appendChild(msg);
