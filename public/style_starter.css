@@ -1,5 +1,4 @@
-@import '/css/vs2015.min.css';
-@import "tailwindcss";
+@import 'vs2015.min.css';
 
 body {
   font-family: Arial, sans-serif;
@@ -52,30 +51,6 @@ h1 {
   text-align: left;
 }
 
-/* Code blocks inside <pre> */
-.message.bot pre code {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 90%;
-  line-height: 1.4;
-  display: block;
-  border-radius: 5px;
-  white-space: pre;
-  max-height: 300px;
-  overflow-x: auto;
-  overflow-y: auto;
-  padding: 12px;
-  margin: 0.5em 0;
-}
-
-/* Style for inline <code> NOT inside <pre> */
-.message.bot code:not(pre code) {
-  font-family: 'Courier New', Courier, monospace;
-  background-color: #e9e9e9;
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 90%;
-}
-
 form {
   display: flex;
   gap: 10px;
@@ -101,4 +76,42 @@ button {
 
 button:hover {
   background-color: #0b5ed7;
+}
+
+
+/* Message block */
+pre code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 90%;
+    line-height: 1.4;
+    display: block;
+    border-radius: 8px;
+    white-space: pre;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 12px;
+    margin-block: 1rem;
+}
+
+/* Style for inline <code> NOT inside <pre> */
+code:not(pre code) {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #747474;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 90%;
+}
+
+code::-webkit-scrollbar {
+    width: 4px;
+}
+code::-webkit-scrollbar-track {
+    background: transparent;
+}
+code::-webkit-scrollbar-thumb {
+    background: #4a5568; /* gray-700 */
+    border-radius: 8px;
+}
+code::-webkit-scrollbar-thumb:hover {
+    background: #718096; /* gray-600 */
 }

@@ -43,7 +43,7 @@ p { margin-top: 1em; margin-bottom: 1em; }
     z-index: 1;
     mask: linear-gradient(to top, black 80%, transparent 100%);
     -webkit-mask: linear-gradient(to top, black 80%, transparent 100%);
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(12px);
 }
 
 /* Custom input styles */
@@ -60,10 +60,10 @@ p { margin-top: 1em; margin-bottom: 1em; }
 .bg-filter::before {
     content: '';
     position: absolute;
-    inset: -20px;
+    inset: -50px;
     z-index: 0;
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(12px);
     filter: url(#glass-distortion);
     -webkit-backdrop-filter: blur(px);
@@ -82,7 +82,7 @@ p { margin-top: 1em; margin-bottom: 1em; }
     z-index: 0;
     position: absolute;
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(12px);
     filter: url(#glass-distortion);
     -webkit-backdrop-filter: blur(px);
@@ -129,5 +129,5 @@ code::-webkit-scrollbar-thumb:hover {
 
 hr {
     margin-block: 2rem;
-    opacity: 0;
+    opacity: 20%;
 }
