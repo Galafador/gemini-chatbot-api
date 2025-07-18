@@ -37,10 +37,10 @@
                 </li>
             </ul>
         </div>
-        <!-- Options -->
+        <!-- User Profile -->
         <div class="z-10 mt-auto">
             <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-700">
-                <span class="font-medium"></span>
+                <span class="font-medium">User</span>
             </a>
         </div>
       </div>
@@ -62,18 +62,54 @@
 
       <!-- Conversation History -->
       <div id="chat-box" class="z-0 w-full h-full self-stretch px-4 md:px-12 pt-16 pb-6 inline-flex flex-col items-center gap-2.5 overflow-y-scroll custom-scrollbar" style="background-color: rgba(0, 195, 255, 0);">
-        
         <!-- AI Message -->
-        <div class="flex w-full max-w-2xl gap-3 mb-3">
-          <div class="w-full p-4 rounded-lg self-center text-gray-300">
-            <p>Hello! I'm a large language model, trained by Google. How can I help you today?</p>
+        <div class="message bot flex w-full max-w-2xl gap-3 mb-3">
+          <div class="w-full p-4 rounded-lg self-center">
+            <p class="text-gray-300">Hello! I'm a large language model, trained by Google. How can I help you today?</p>
           </div>
         </div>
-
+        <!-- User Message -->
+        <div class="flex w-full items-end gap-3 justify-end max-w-2xl text-end mb-3" style="background-color: rgba(0, 128, 0, 0);">
+          <div class="bg-blue-700 p-4 rounded-lg max-w-lg">
+            <p class="text-white">explain to me how tailwindcss works as I'm a beginner. list the most used classes for layouts, spacing, borders, and colors, with code examples. how do I implement responsive design with light/dark mode.</p>
+          </div>
+        </div>
+        <!-- AI Message -->
+        <div class="message bot flex w-full  max-w-2xl gap-3">
+          <div class=" w-full p-4 rounded-lg text-gray-300">
+            <h1>TailwindCSS for Beginners </h1>
+            <p>TailwindCSS is a <strong>utility-first CSS framework</strong> that provides low-level utility classes to build custom designs directly in your HTML. Instead of writing custom CSS, you apply small, single-purpose classes to style elements.</p>
+            <h1>Most Used Classes </h1>
+            <h2>1. Layout Classes </h2>
+            <p>Think of Tailwind as a toolkit of pre-built CSS classes. Each class does one specific thing:</p>
+            <ol class="list-disc mx-5">
+              <li> <code>text-red-500</code> makes text red</li>
+              <li> <code>text-red-500</code> makes text red</li>
+              <li> <code>text-red-500</code> makes text red</li>
+            </ol>
+            <pre><code class="language-html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary Button&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+        <!-- AI Message -->
+        <div class="message bot flex w-full  max-w-2xl gap-3">
+          <div class=" w-full p-4 rounded-lg text-gray-300">
+            <h1>TailwindCSS for Beginners </h1>
+            <p>TailwindCSS is a <strong>utility-first CSS framework</strong> that provides low-level utility classes to build custom designs directly in your HTML. Instead of writing custom CSS, you apply small, single-purpose classes to style elements.</p>
+            <h1>Most Used Classes </h1>
+            <h2>1. Layout Classes </h2>
+            <p>Think of Tailwind as a toolkit of pre-built CSS classes. Each class does one specific thing:</p>
+            <ol class="list-disc mx-5">
+              <li> <code>text-red-500</code> makes text red</li>
+              <li> <code>text-red-500</code> makes text red</li>
+              <li> <code>text-red-500</code> makes text red</li>
+            </ol>
+            <pre><code class="language-html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary Button&lt;/button&gt;</code></pre>
+          </div>
+        </div>
       </div>
 
       <!-- Input Area -->
-      <footer id="chat-form-container" class="chat-form-container px-4 md:px-12 pt-0 pb-6 w-full bg-gradient-to-t from-stone-950 from-0% via-stone-950 via-15% to-stone-950/0 blur-gradient-mask inline-flex flex-col justify-center items-center gap-2" style="background-color: rgba(0, 128, 0, 0);">
+      <footer id="chat-form-container" class="chat-form-container px-4 md:px-12 pt-14 pb-6 left-0 bottom-0 right-0 absolute bg-gradient-to-t from-stone-950 from-0% via-stone-950 via-15% to-stone-950/0 blur-gradient-mask inline-flex flex-col justify-center items-center gap-2 overflow-hidden" style="background-color: rgba(0, 128, 0, 0);">
         <form id="chat-form" class="chat-form bg-filter bg-stone-900/5 w-full max-w-2xl p-3 relative rounded-2xl shadow-[0px_0px_8px_8px_rgba(255,255,255,0.25),0px_0px_4px_2px_rgba(255,255,255,0.6),0px_0px_12px_12px_rgba(0,0,0,0.25)] inline-flex flex-col justify-start items-start overflow-hidden">
           <!-- Text Input -->
             <textarea rows="1" id="user-input" placeholder="Ask anything..." class="z-10 user-input w-full bg-transparent text-stone-50 placeholder-stone-400 focus:outline-none px-2 mb-3 min-h-12 max-h-24 custom-scrollbar"></textarea>
@@ -102,7 +138,7 @@
               </div>
               <!-- Send Button -->
               <div class="ml-auto">
-                <button type="submit" class="p-3 bg-stone-500 disabled:hover:bg-stone-500 hover:bg-stone-50 rounded-lg text-stone-400 disabled:hover:text-stone-400 hover:text-stone-900 transition-colors disabled:opacity-50">
+                <button class="p-3 bg-stone-500 disabled:hover:bg-stone-500 hover:bg-stone-50 rounded-lg text-stone-400 disabled:hover:text-stone-400 hover:text-stone-900 transition-colors disabled:opacity-50" disabled>
                   <!-- Send Icon -->
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <g clip-path="url(#clip0_10_51)">

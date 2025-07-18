@@ -9,11 +9,11 @@ form.addEventListener('submit', function (e) {
   const userMessage = input.value.trim();
   if (!userMessage) return;
 
-  appendMessage('user', userMessage);
+  appendUserMessage(userMessage);
   input.value = '';
 
   // Display "thinking..." message
-  const thinkingMessage = appendMessage('bot', 'Thinking...');
+  const thinkingMessage = appendBotMessage('Thinking...');
 
   fetch('/api/chat', {
     method: 'POST',
@@ -28,45 +28,62 @@ form.addEventListener('submit', function (e) {
     removeMessage(thinkingMessage);
     if (data.reply) {
       // Get an already HTML formatted text from backend and append
-      appendFormattedMessage('bot', data.reply);
+      appendFormattedMessage(data.reply);
     }
   })
   .catch(error => {
     console.error('Error:', error);
     removeMessage(thinkingMessage);
-    appendMessage('bot', 'Error: Could not retrieve response.');
+    appendBotMessage('Error: Could not retrieve response.');
   });
 });
 
-function appendMessage(sender, text) {
+function appendUserMessage(text) {
+  const msgContainer = document.createElement('div');
+  msgContainer.className = 'flex w-full items-end gap-3 justify-end max-w-2xl text-end mb-3';
   const msg = document.createElement('div');
-  msg.classList.add('message', sender);
+  msg.className = 'bg-blue-700 p-4 rounded-lg max-w-lg text-white';
   msg.textContent = text;
-  chatBox.appendChild(msg);
+  msgContainer.appendChild(msg);
+  chatBox.appendChild(msgContainer);
   chatBox.scrollTop = chatBox.scrollHeight;
-  return msg;
+  return msgContainer;
 }
-
-function removeMessage(messageElement) {
-    if (messageElement)
-        chatBox.removeChild(messageElement);
-}
-
-function appendFormattedMessage(sender, htmlText) {
+// Creates a simple bot message (e.g., "Thinking...", "Error...")
+function appendBotMessage(text) {
+  const msgContainer = document.createElement('div');
+  // Use the correct structure for bot messages
+  msgContainer.className = 'message bot flex w-full max-w-2xl gap-3 mb-3';
   const msg = document.createElement('div');
-  msg.classList.add('message', sender);
-
+  msg.className = 'w-full p-4 rounded-lg self-center text-gray-300';
+  msg.textContent = text;
+  msgContainer.appendChild(msg);
+  chatBox.appendChild(msgContainer);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  return msgContainer;
+}
+function removeMessage(messageElement) {
+    if (messageElement && messageElement.parentNode === chatBox) {
+        chatBox.removeChild(messageElement);
+    }
+}
+// Creates a bot message with formatted HTML content
+function appendFormattedMessage(htmlText) {
+  const msgContainer = document.createElement('div');
+  // Use the correct structure for bot messages, including 'message' and 'bot' classes for CSS targeting
+  msgContainer.className = 'message bot flex w-full max-w-2xl gap-3 pb-3';
+  const msg = document.createElement('div');
+  msg.className = 'w-full p-4 rounded-lg self-center text-gray-300';
   // append html from backend
   msg.innerHTML = htmlText;
-
-  // Append to DOM  first
-  chatBox.appendChild(msg);
+  // Append the message to the container, then the container to the chatbox
+  msgContainer.appendChild(msg);
+  chatBox.appendChild(msgContainer);
   chatBox.scrollTop = chatBox.scrollHeight;
-
   // Highlight all <code> blocks inside the new message
   msg.querySelectorAll('pre code').forEach((block) => {
     hljs.highlightElement(block);
   });
   
-  return msg;
+  return msgContainer;
 }

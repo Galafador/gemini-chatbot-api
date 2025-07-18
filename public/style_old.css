@@ -1,4 +1,5 @@
 @import '/css/vs2015.min.css';
+@import "tailwindcss";
 
 body {
   font-family: Arial, sans-serif;

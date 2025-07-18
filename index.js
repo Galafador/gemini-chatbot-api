@@ -66,11 +66,6 @@ function imageToGenerativePart(file) {
     }
 }
 
-// Start the app and listen on PORT
-app.listen(PORT, () => {
-    console.log(`Gemini Chatbot running on http://localhost:${PORT}`)
-})
-
 /*
 The backend renders outputted text from Markdown to HTML with syntax highlighting, 
 before sending it to the frontend
@@ -188,4 +183,10 @@ app.post('/api/generate-from-audio', upload.single('audio'), async (req, res) =>
     } finally {
         fs.unlinkSync(req.file.path)
     }
+})
+
+
+// Start the app and listen on PORT
+app.listen(PORT, () => {
+    console.log(`Gemini Chatbot running on http://localhost:${PORT}`)
 })
