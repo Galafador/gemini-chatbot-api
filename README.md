@@ -9,6 +9,7 @@ https://www.figma.com/design/sa5UDe7gdhJRFHCXPg742i/Chatbot-App?node-id=0-1&t=hj
 ![Desktop View](https://github.com/user-attachments/assets/a35376c9-d4d6-4404-8dad-f33aa272db77)
 ![Mobile View](https://github.com/user-attachments/assets/29fe5f67-a912-4ee1-8de1-ad8860b7f550)
 ![Figma Design](https://github.com/user-attachments/assets/d5db69ff-a98d-4929-8ed9-652c304846c6)
+![Figma Design 2](https://github.com/user-attachments/assets/c753ba27-7170-4dae-b340-8601053caed7)
 
 
 ## running the app
