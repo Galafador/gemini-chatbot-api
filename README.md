@@ -19,7 +19,7 @@ https://www.figma.com/design/sa5UDe7gdhJRFHCXPg742i/Chatbot-App?node-id=0-1&t=hj
 4. create a .env file, insert into this file ```GEMINI_API_KEY=YOUR_API_KEY``` (replace with api key that you get from above)
 5. run with ```npm start```
 
-##Work In Progress
+## Work In Progress
 1. Context aware between prompts
 2. Chat history (backend db + frontend)
 3. Settings (Temperature, top-p, top-k, seed, etc from the GUI)
