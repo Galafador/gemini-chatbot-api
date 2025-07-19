@@ -11,8 +11,11 @@ https://www.figma.com/design/sa5UDe7gdhJRFHCXPg742i/Chatbot-App?node-id=0-1&t=hj
 ![Figma Design](https://github.com/user-attachments/assets/d5db69ff-a98d-4929-8ed9-652c304846c6)
 ![Figma Design 2](https://github.com/user-attachments/assets/c753ba27-7170-4dae-b340-8601053caed7)
 
+## Prerequisite
+1. Node.js v18+
+2. Gemini API key
 
-## running the app
+## Running the App
 1. download or clone the files in this repository
 2. install dependencies with ```npm install```
 3. get your gemini API key from https://aistudio.google.com/apikey
